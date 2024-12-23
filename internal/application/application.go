@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/TravellerGSF/CalcGO/pkg/calculation"
+	"github.com/ItzB1ack/CalculatorYL/pkg/calculation"
 )
 
 type Config struct {
