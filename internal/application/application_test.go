@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/ItzB1ack/CalculatorYL/internal/application"
+	"github.com/ItzB1ack/CalculatorYL-master/internal/application"
 )
 
 func TestCalcHandler(t *testing.T) {
