@@ -30,7 +30,7 @@
 2. Установите Git https://git-scm.com/downloads
 3. C помощью командной строки клонируйте проект с GitHub:
     ```
-    git clone https://github.com/TravellerGSF/CalcGO
+    git clone https://github.com/ItzB1ack/CalculatorYL.git
     ```
 5. Перейдите в директорию с проектом и запустите сервер с помощью команды:
     ```
