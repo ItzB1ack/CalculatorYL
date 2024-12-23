@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/ItzB1ack/CalculatorYL/internal/application"
+	"github.com/ItzB1ack/CalculatorYL-master/internal/application"
 )
 
 func main() {
