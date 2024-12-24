@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/ItzB1ack/CalculatorYL/internal/application"
+	"github.com/ItzB1ack/CalculatorYL/tree/master/internal/application"
 )
 
 func main() {

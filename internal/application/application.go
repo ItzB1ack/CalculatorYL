@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/ItzB1ack/CalculatorYL/pkg/calc"
+	"github.com/ItzB1ack/CalculatorYL/tree/master/pkg/calc"
 )
 
 type Config struct {
