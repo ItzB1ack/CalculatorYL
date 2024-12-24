@@ -9,15 +9,15 @@ import (
 )
 
 type Config struct {
-	Addr string
+	Address string
 }
 
 func ConfigFromEnv() *Config {
 	config := new(Config)
-	config.Addr = os.Getenv("PORT")
+	config.Address = os.Getenv("PORT")
 
-	if config.Addr == "" {
-		config.Addr = "8080"
+	if config.Address == "" {
+		config.Address = "8080"
 	}
 
 	return config
@@ -57,11 +57,11 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		result, err := calculation.Calc(request.Expression)
+		result, err := calc.Calc(request.Expression)
 
 		if err != nil {
 			switch err {
-			case calculation.ErrBrackets, calculation.ErrValues, calculation.ErrDivisionByZero, calculation.ErrAllowed:
+			case calc.ErrBrackets, calc.ErrValues, calc.ErrDivisionByZero, calc.ErrAllowed:
 				w.WriteHeader(http.StatusUnprocessableEntity)
 				responce := Response{Error: err.Error()}
 
@@ -86,5 +86,5 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 
 func (a *Application) RunServer() error {
 	http.HandleFunc("/", CalcHandler)
-	return http.ListenAndServe(":"+a.config.Addr, nil)
+	return http.ListenAndServe(":"+a.config.Address, nil)
 }
