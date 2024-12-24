@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"github.com/ItzB1ack/CalculatorYL-master/pkg/calc"
+
+	"github.com/ItzB1ack/CalculatorYL/pkg/calc"
 )
 
 type Config struct {
