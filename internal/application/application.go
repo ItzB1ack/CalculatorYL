@@ -2,12 +2,10 @@ package application
 
 import (
 	"encoding/json"
-
 	"fmt"
 	"net/http"
 	"os"
-
-	"github.com/ItzB1ack/CalculatorYL-master/pkg/calculation"
+	"github.com/ItzB1ack/CalculatorYL-master/pkg/calc"
 )
 
 type Config struct {
@@ -55,7 +53,7 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
-			fmt.Fprintf(w, `{"error": "Плохой запрос"}`)
+			fmt.Fprintf(w, `{"error": "Запрос невалиден"}`)
 			return
 		}
 
@@ -81,7 +79,7 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	} else {
 		w.WriteHeader(http.StatusMethodNotAllowed)
-		fmt.Fprintf(w, `{"error": "разрешен только метод POST"}`)
+		fmt.Fprintf(w, `{"error": "Данный метод не поддерживается"}`)
 	}
 
 }
