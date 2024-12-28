@@ -38,7 +38,11 @@ func Calc(expression string) (float64, error) {
 				operators = append(operators, char)
 			} else if char == ')' {
 				for len(operators) > 0 && operators[len(operators)-1] != '(' {
-					numbers, operators = applyOperator(numbers, operators)
+					var err error
+					numbers, operators, err = applyOperator(numbers, operators)
+					if err != nil {
+						return 0, err
+					}
 				}
 				if len(operators) == 0 {
 					return 0, errors.New(ErrorInBrackets)
@@ -64,7 +68,11 @@ func Calc(expression string) (float64, error) {
 	}
 
 	for len(operators) > 0 {
-		numbers, operators = applyOperator(numbers, operators)
+		var err error
+		numbers, operators, err = applyOperator(numbers, operators)
+		if err != nil {
+			return 0, err
+		}
 	}
 
 	if len(numbers) != 1 {
@@ -117,33 +125,35 @@ func validateBrackets(expression string) error {
 	return nil
 }
 
-func applyOperator(numbers []float64, operators []rune) ([]float64, []rune) {
+func applyOperator(numbers []float64, operators []rune) ([]float64, []rune, error) {
 	if len(numbers) < 2 || len(operators) == 0 {
-		return numbers, operators
+		return numbers, operators, nil
 	}
 
-	num2 := numbers[len(numbers)-1]
-	num1 := numbers[len(numbers)-2]
 	operator := operators[len(operators)-1]
+	if operator == '(' {
+		return numbers, operators, nil
+	}
 
+	b := numbers[len(numbers)-1]
+	a := numbers[len(numbers)-2]
 	numbers = numbers[:len(numbers)-2]
 	operators = operators[:len(operators)-1]
 
 	var result float64
 	switch operator {
 	case '+':
-		result = num1 + num2
+		result = a + b
 	case '-':
-		result = num1 - num2
+		result = a - b
 	case '*':
-		result = num1 * num2
+		result = a * b
 	case '/':
-		if num2 == 0 {
-			return numbers, operators
+		if b == 0 {
+			return numbers, operators, errors.New(DivideByZero)
 		}
-		result = num1 / num2
+		result = a / b
 	}
 
-	numbers = append(numbers, result)
-	return numbers, operators
+	return append(numbers, result), operators, nil
 }
