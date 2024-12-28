@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"unicode"
 	"errors"
-	"fmt"
+	//"fmt"
 )
 
 func Calc(expression string) (float64, error) {
@@ -146,16 +146,4 @@ func applyOperator(numbers []float64, operators []rune) ([]float64, []rune) {
 
 	numbers = append(numbers, result)
 	return numbers, operators
-}
-
-func main() {
-	var expression string
-	fmt.Scan(&expression)
-
-	result, err := Calc(expression)
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println(result)
-	}
 }
