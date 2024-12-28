@@ -13,79 +13,79 @@ func TestCalc(t *testing.T) {
 		expectedErr string
 	}{
 		{
-			name:       "Simple addition",
+			name:       "Простое сложение",
 			expression: "2+2",
 			want:      4,
 			wantErr:   false,
 		},
 		{
-			name:       "Simple subtraction",
+			name:       "Простое вычитание",
 			expression: "5-3",
 			want:      2,
 			wantErr:   false,
 		},
 		{
-			name:       "Simple multiplication",
+			name:       "Простое умножение",
 			expression: "4*3",
 			want:      12,
 			wantErr:   false,
 		},
 		{
-			name:       "Simple division",
+			name:       "Простое деление",
 			expression: "8/2",
 			want:      4,
 			wantErr:   false,
 		},
 		{
-			name:       "Complex expression with brackets",
+			name:       "Сложное выражение со скобками",
 			expression: "(2+3)*4",
 			want:      20,
 			wantErr:   false,
 		},
 		{
-			name:       "Complex expression with multiple operators",
+			name:       "Сложное выражение с несколькими операторами",
 			expression: "2+3*4",
 			want:      14,
 			wantErr:   false,
 		},
 		{
-			name:       "Expression with nested brackets",
+			name:       "Выражение с вложенными скобками",
 			expression: "((2+3)*2)+1",
 			want:      11,
 			wantErr:   false,
 		},
 		{
-			name:        "Division by zero",
+			name:        "Деление на ноль",
 			expression:  "1/0",
 			wantErr:     true,
 			expectedErr: DivideByZero,
 		},
 		{
-			name:        "Invalid brackets",
+			name:        "Некорректные скобки",
 			expression:  "((1+2)*3",
 			wantErr:     true,
 			expectedErr: ErrorInBrackets,
 		},
 		{
-			name:        "Invalid expression - double operators",
+			name:        "Некорректное выражение - двойные операторы",
 			expression:  "1++2",
 			wantErr:     true,
 			expectedErr: ErrorInExpression,
 		},
 		{
-			name:        "Invalid expression - starts with operator",
+			name:        "Некорректное выражение - начинается с оператора",
 			expression:  "+1+2",
 			wantErr:     true,
 			expectedErr: ErrorInExpression,
 		},
 		{
-			name:        "Invalid expression - ends with operator",
+			name:        "Некорректное выражение - заканчивается оператором",
 			expression:  "1+2+",
 			wantErr:     true,
 			expectedErr: ErrorInExpression,
 		},
 		{
-			name:        "Empty expression",
+			name:        "Пустое выражение",
 			expression:  "",
 			wantErr:     true,
 			expectedErr: ErrorInExpression,
@@ -118,30 +118,30 @@ func TestValidateExpression(t *testing.T) {
 		expectedErr string
 	}{
 		{
-			name:       "Valid expression",
+			name:       "Валидное выражение",
 			expression: "1+2*3",
 			wantErr:   false,
 		},
 		{
-			name:        "Empty expression",
+			name:        "Пустое выражение",
 			expression:  "",
 			wantErr:     true,
 			expectedErr: ErrorInExpression,
 		},
 		{
-			name:        "Starts with operator",
+			name:        "Начинается с оператора",
 			expression:  "+1+2",
 			wantErr:     true,
 			expectedErr: ErrorInExpression,
 		},
 		{
-			name:        "Ends with operator",
+			name:        "Заканчивается оператором",
 			expression:  "1+2+",
 			wantErr:     true,
 			expectedErr: ErrorInExpression,
 		},
 		{
-			name:        "Double operators",
+			name:        "Двойные операторы",
 			expression:  "1++2",
 			wantErr:     true,
 			expectedErr: ErrorInExpression,
@@ -170,29 +170,29 @@ func TestValidateBrackets(t *testing.T) {
 		expectedErr string
 	}{
 		{
-			name:       "Valid brackets",
+			name:       "Валидные скобки",
 			expression: "(1+2)*3",
 			wantErr:   false,
 		},
 		{
-			name:       "Nested brackets",
+			name:       "Вложенные скобки",
 			expression: "((1+2)*3)",
 			wantErr:   false,
 		},
 		{
-			name:        "Unclosed bracket",
+			name:        "Незакрытая скобка",
 			expression:  "(1+2",
 			wantErr:     true,
 			expectedErr: ErrorInBrackets,
 		},
 		{
-			name:        "Extra closing bracket",
+			name:        "Избыточная закрывающая скобка",
 			expression:  "(1+2))",
 			wantErr:     true,
 			expectedErr: ErrorInBrackets,
 		},
 		{
-			name:        "Mismatched brackets",
+			name:        "Несовпадающие скобки",
 			expression:  ")(1+2)",
 			wantErr:     true,
 			expectedErr: ErrorInBrackets,

@@ -18,12 +18,12 @@ func TestConfigFromEnv(t *testing.T) {
 		expected string
 	}{
 		{
-			name:     "Default port when env is empty",
+			name:     "Порт по умолчанию при пустом env",
 			envPort:  "",
 			expected: "8080",
 		},
 		{
-			name:     "Custom port from env",
+			name:     "Пользовательский порт из env",
 			envPort:  "3000",
 			expected: "3000",
 		},
@@ -55,7 +55,7 @@ func TestCalcHandler(t *testing.T) {
 		expectedBody   map[string]interface{}
 	}{
 		{
-			name:   "Valid expression",
+			name:   "Корректное выражение",
 			method: "POST",
 			requestBody: Request{
 				Expression: "2+2",
@@ -66,7 +66,7 @@ func TestCalcHandler(t *testing.T) {
 			},
 		},
 		{
-			name:   "Invalid expression - division by zero",
+			name:   "Некорректное выражение - деление на ноль",
 			method: "POST",
 			requestBody: Request{
 				Expression: "1/0",
@@ -77,7 +77,7 @@ func TestCalcHandler(t *testing.T) {
 			},
 		},
 		{
-			name:   "Invalid expression - brackets",
+			name:   "Некорректное выражение - скобки",
 			method: "POST",
 			requestBody: Request{
 				Expression: "((1+2)",
@@ -88,7 +88,7 @@ func TestCalcHandler(t *testing.T) {
 			},
 		},
 		{
-			name:   "Invalid JSON request",
+			name:   "Некорректный JSON запрос",
 			method: "POST",
 			requestBody: map[string]interface{}{
 				"invalid_field": "value",
@@ -99,7 +99,7 @@ func TestCalcHandler(t *testing.T) {
 			},
 		},
 		{
-			name:           "Invalid HTTP method",
+			name:           "Некорректный HTTP метод",
 			method:         "GET",
 			requestBody:    nil,
 			expectedStatus: http.StatusMethodNotAllowed,
